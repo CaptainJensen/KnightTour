@@ -15,7 +15,7 @@ public class ProcessingTour extends PApplet {
 
     private int boardSize = 8;
     private int iterationAwnser = 0;
-    private Square startingSquare = new Square(0,0,0);//TODO: Make it random
+    private Square startingSquare = new Square((int)random(0,boardSize-1),(int)random(0,boardSize-1),0);//TODO: Make it random
     private Knight knight = new Knight(startingSquare , boardSize, boardSize);
     private boolean lineMode = false;
 
