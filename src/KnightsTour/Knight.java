@@ -195,8 +195,19 @@ public class Knight {
      */
     public int getScoreOfSquare(int row, int col) {
 
+        int ScoreOfSquare = 0;
+        for (int r = 0; r < board.length; r++) {
+            for (int c = 0; c < board[r].length; c++) {
+                if(((r == row+2 || r == row-2) && (c == col-1 || c == col+1)) && !board[r][c]){
+                    ScoreOfSquare++;
+                }
+                if(((r == row+1 || r == row-1) && (c == col-2 || c == col+2)) && !board[r][c]) {
+                    ScoreOfSquare++;
+                }
+            }
+        }
 
-
+        return ScoreOfSquare;
 
 
 
