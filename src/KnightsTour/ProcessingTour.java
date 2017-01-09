@@ -6,6 +6,7 @@ import processing.core.PFont;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by Jensen on 1/8/17.
@@ -13,9 +14,10 @@ import java.util.ArrayList;
 public class ProcessingTour extends PApplet {
 
     private int boardSize = 8;
-    private int iterationAwnser;
+    private int iterationAwnser = 0;
     private Square startingSquare = new Square(0,0,0);//TODO: Make it random
     private Knight knight = new Knight(startingSquare , boardSize, boardSize);
+    private boolean lineMode = false;
 
     private PFont font = createFont("Arial",16,true);
 
@@ -23,13 +25,12 @@ public class ProcessingTour extends PApplet {
 
     public void setup() {
         size(boardSize*100,boardSize*100);
-        iterationAwnser = 0;
 
-            System.out.println(awnsers.toString());
-
+        System.out.println(awnsers.toString());
 
 
 
+        System.out.println(Arrays.deepToString(knight.getBoard()));
     }
 
 
@@ -48,13 +49,19 @@ public class ProcessingTour extends PApplet {
        // text(String.valueOf(iterationAwnser), centerOfSquareX, centerOfSquareY);
        // text(String.valueOf(iterationAwnser), height/(boardSize*2), width/(boardSize*2)*14);
 
-        for (int i = 0; i < awnsers.size()-1; i++) {
-            text( i , awnsers.get(i).getRow()*(height/boardSize)+ (height/boardSize)/2,awnsers.get(i).getColumn()*(width/boardSize) + (width/boardSize)/2);
+        for (int i = 0; i < iterationAwnser; i++) {
+            if(lineMode) {
+                line(awnsers.get(i).getRow()*(height/boardSize)+ (height/boardSize)/2, awnsers.get(i).getColumn()*(width/boardSize) + (width/boardSize)/2, awnsers.get(i+1).getRow()*(height/boardSize) + (height/boardSize)/2, awnsers.get(i+1).getColumn()*(width/boardSize) + (width/boardSize)/2);
+
+            } else {
+                text( i+1 , awnsers.get(i).getRow()*(height/boardSize)+ (height/boardSize)/2,awnsers.get(i).getColumn()*(width/boardSize) + (width/boardSize)/2);
+
+            }
 
         }
 
 
-       // line(awnsers.get(0).getRow()*(height/boardSize)+ (height/boardSize)/2, awnsers.get(0).getColumn()*(width/boardSize) + (width/boardSize)/2, awnsers.get(1).getRow()*(height/boardSize) + (height/boardSize)/2, awnsers.get(1).getColumn()*(width/boardSize) + (width/boardSize)/2);
+
 
 
 
@@ -83,19 +90,48 @@ public class ProcessingTour extends PApplet {
 
 
     public void keyPressed() {
+        if (keyCode == LEFT) {
+            if(iterationAwnser >= 0) {
+                 iterationAwnser--;
+                 draw();
+                 System.out.println("Left Key Pressed & iteration --");
+            }
+
+        }
         if (keyCode == RIGHT) {
-
-
             if(iterationAwnser <= awnsers.size()-1) {
                 iterationAwnser++;
                 draw();
                 System.out.println("Right Key Pressed & iteration ++");
             }
 
-
-
+        }
+        if (keyCode == UP) {
+            iterationAwnser = awnsers.size()-1;
+            draw();
+            System.out.println("Up Key Pressed & iteration awnsers.size()-1");
 
         }
+        if (keyCode == DOWN) {
+            iterationAwnser = 0;
+            draw();
+            System.out.println(Arrays.deepToString(knight.getBoard()));
+            System.out.println("Up Key Pressed & iteration 0");
+
+        }
+        if (keyCode == SHIFT && !lineMode) {
+            lineMode = true;
+            draw();
+            System.out.println("Shift Key Pressed & Line mode True");
+
+        }
+        else if (keyCode == SHIFT && lineMode) {
+            lineMode = false;
+            draw();
+            System.out.println("Shift Key Pressed & Line mode True");
+
+        }
+
 
     }
 }
