@@ -4,7 +4,6 @@ package KnightsTour;
 
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Random;
 
 public class Knight {
@@ -23,8 +22,7 @@ public class Knight {
      * @param cols the number of columns in this Knight's board
      */
     public Knight(Square s, int rows, int cols) {
-        boolean[][] PREboard = new boolean[rows][cols];
-        board = PREboard;
+        board = new boolean[rows][cols];
         this.startingSquare = s;
         for (int r = 0; r < board.length; r++) {
             for (int c = 0; c < board[r].length; c++) {
