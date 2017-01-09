@@ -10,7 +10,7 @@ public class Knight {
     private Square currentSquare;
     private Square startingSquare;
     private boolean[][] board;
-    Random random = new Random();
+    private Random random = new Random();
 
     /**
      * Creates a Knight with board of size rows x columns.
@@ -24,6 +24,7 @@ public class Knight {
     public Knight(Square s, int rows, int cols) {
         board = new boolean[rows][cols];
         this.startingSquare = s;
+        currentSquare = startingSquare;
         for (int r = 0; r < board.length; r++) {
             for (int c = 0; c < board[r].length; c++) {
                 board[r][c] = false;
@@ -70,6 +71,7 @@ public class Knight {
             board[currentSquare.getRow()][currentSquare.getColumn()] = true;
             //sequence.add(currentSquare);
             ArrayList<Square> possible = getPossibleSquares();
+            //System.out.println("Possible places: " + possible.toString());
             if (possible.isEmpty()) {
                 sequence.clear();
                 sequence.add(startingSquare);
@@ -93,15 +95,12 @@ public class Knight {
      * @return true if starting Square is reachable from current Square, false otherwise
      */
     public boolean startIsReachableFromCurrent() {
-            //FOR CLOSED KNIGHTS TOUR
 
+        //do something to find a reachable
 
-
-//        //do something to find a reachable
-//        if(this.getCurrentSquare()...) {
-//            return true;
-//        } else return false;
-        return Boolean.parseBoolean(null);
+        if(this.getCurrentSquare().getColumn() == startingSquare.getColumn() && this.getCurrentSquare().getRow() == startingSquare.getRow()) {
+            return true;
+        } else return false;
     }
 
     /**
@@ -116,7 +115,7 @@ public class Knight {
 
         bestList.add(possible.get(0));
 
-        for(int i = 1;i < possible.size();i++){
+        for(int i = 0; i < bestList.size()-1; i++){
             if(possible.get(i).getScore() < bestList.get(i).getScore()){
                 bestList.set(i,possible.get(i));
             }
@@ -156,28 +155,28 @@ public class Knight {
             for (int c = 0; c < board[r].length; c++) {
 
                 Square questionSquare = new Square(r, c, getScoreOfSquare(r, c));
-                if(questionSquare.getRow() == getCurrentSquare().getRow()-2 && questionSquare.getColumn() == getCurrentSquare().getColumn()+1 && isValid(r-2, c+1)) {
+                if(questionSquare.getRow() == getCurrentSquare().getRow()-2 && questionSquare.getColumn() == getCurrentSquare().getColumn()+1 && isValid(r-2, c+1) && !board[questionSquare.getRow()-2][questionSquare.getColumn()+1]) {
                     possible.add(questionSquare);
                 }
-                else if (questionSquare.getRow() == getCurrentSquare().getRow()-1 && questionSquare.getColumn() ==  getCurrentSquare().getColumn()+2 && isValid(r-1, c+2)) {
+                if (questionSquare.getRow() == getCurrentSquare().getRow()-1 && questionSquare.getColumn() ==  getCurrentSquare().getColumn()+2 && isValid(r-1, c+2) && !board[questionSquare.getRow()-1][questionSquare.getColumn()+2]) {
                     possible.add(questionSquare);
                 }
-                else if (questionSquare.getRow() == getCurrentSquare().getRow()+1 && questionSquare.getColumn() == getCurrentSquare().getColumn()+2 && isValid(r+1, c+2)) {
+                if (questionSquare.getRow() == getCurrentSquare().getRow()+1 && questionSquare.getColumn() == getCurrentSquare().getColumn()+2 && isValid(r+1, c+2) && !board[questionSquare.getRow()+1][questionSquare.getColumn()+2]) {
                     possible.add(questionSquare);
                 }
-                else if (questionSquare.getRow() == getCurrentSquare().getRow()+2 && questionSquare.getColumn() == getCurrentSquare().getColumn()+1 && isValid(r+2, c+1)) {
+                if (questionSquare.getRow() == getCurrentSquare().getRow()+2 && questionSquare.getColumn() == getCurrentSquare().getColumn()+1 && isValid(r+2, c+1) && !board[questionSquare.getRow()+2][questionSquare.getColumn()+1]) {
                     possible.add(questionSquare);
                 }
-                else if (questionSquare.getRow() == getCurrentSquare().getRow()+2 && questionSquare.getColumn() == getCurrentSquare().getColumn()-1 && isValid(r+2, c-1)) {
+                if (questionSquare.getRow() == getCurrentSquare().getRow()+2 && questionSquare.getColumn() == getCurrentSquare().getColumn()-1 && isValid(r+2, c-1) && !board[questionSquare.getRow()+2][questionSquare.getColumn()-1]) {
                     possible.add(questionSquare);
                 }
-                else if (questionSquare.getRow() == getCurrentSquare().getRow()+1 && questionSquare.getColumn() == getCurrentSquare().getColumn()-2 && isValid(r+1, c-2)) {
+                if (questionSquare.getRow() == getCurrentSquare().getRow()+1 && questionSquare.getColumn() == getCurrentSquare().getColumn()-2 && isValid(r+1, c-2) && !board[questionSquare.getRow()+1][questionSquare.getColumn()-2]) {
                     possible.add(questionSquare);
                 }
-                else if (questionSquare.getRow() == getCurrentSquare().getRow()-1 && questionSquare.getColumn() == getCurrentSquare().getColumn()-2 && isValid(r-1, c-2)) {
+                if (questionSquare.getRow() == getCurrentSquare().getRow()-1 && questionSquare.getColumn() == getCurrentSquare().getColumn()-2 && isValid(r-1, c-2) && !board[questionSquare.getRow()-1][questionSquare.getColumn()-2]) {
                     possible.add(questionSquare);
                 }
-                else if (questionSquare.getRow() == getCurrentSquare().getRow()-2 && questionSquare.getColumn() == getCurrentSquare().getColumn()-1 && isValid(r-2, c-1)) {
+                if (questionSquare.getRow() == getCurrentSquare().getRow()-2 && questionSquare.getColumn() == getCurrentSquare().getColumn()-1 && isValid(r-2, c-1) && !board[questionSquare.getRow()-2][questionSquare.getColumn()-1]) {
                     possible.add(questionSquare);
                 }
             }
@@ -222,8 +221,9 @@ public class Knight {
      * @return true if the square at row r, column c is in this Knight's board; false otherwise
      */
     public boolean isValid(int r, int c) {
-
-        return r >= 0 && r < board.length && c >= 0 && c < board[r].length;
+        if(r >= 0 && r < board.length && c >= 0 && c < board[r].length) {
+            return true;
+        } else return false;
 
     }
 }
