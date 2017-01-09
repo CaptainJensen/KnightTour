@@ -145,9 +145,6 @@ public class Knight {
 
         ArrayList<Square> possible = new ArrayList<Square>();
 
-        //TODO: also add check if possible location
-        //CHECK IF VALID
-
         for (int r = 0; r < board.length; r++) {
             for (int c = 0; c < board[r].length; c++) {
 
