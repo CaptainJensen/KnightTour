@@ -152,31 +152,28 @@ public class Knight {
             for (int c = 0; c < board[r].length; c++) {
 
                 Square questionSquare = new Square(r, c, getScoreOfSquare(r, c));
-                if(questionSquare.getRow() == getCurrentSquare().getRow()-2 && questionSquare.getColumn() == getCurrentSquare().getColumn()+1) {
+                if(questionSquare.getRow() == getCurrentSquare().getRow()-2 && questionSquare.getColumn() == getCurrentSquare().getColumn()+1 && isValid(r-2, c+1)) {
                     possible.add(questionSquare);
                 }
-                else if (questionSquare.getRow() == getCurrentSquare().getRow()-1 && questionSquare.getColumn() ==  getCurrentSquare().getColumn()+2) {
+                else if (questionSquare.getRow() == getCurrentSquare().getRow()-1 && questionSquare.getColumn() ==  getCurrentSquare().getColumn()+2 && isValid(r-1, c+2)) {
                     possible.add(questionSquare);
                 }
-                else if (questionSquare.getRow() == getCurrentSquare().getRow()+1 && questionSquare.getColumn() == getCurrentSquare().getColumn()+2) {
+                else if (questionSquare.getRow() == getCurrentSquare().getRow()+1 && questionSquare.getColumn() == getCurrentSquare().getColumn()+2 && isValid(r+1, c+2)) {
                     possible.add(questionSquare);
                 }
-                else if (questionSquare.getRow() == getCurrentSquare().getRow()+2 && questionSquare.getColumn() == getCurrentSquare().getColumn()+1) {
+                else if (questionSquare.getRow() == getCurrentSquare().getRow()+2 && questionSquare.getColumn() == getCurrentSquare().getColumn()+1 && isValid(r+2, c+1)) {
                     possible.add(questionSquare);
                 }
-                else if (questionSquare.getRow() == getCurrentSquare().getRow()+2 && questionSquare.getColumn() == getCurrentSquare().getColumn()-1) {
+                else if (questionSquare.getRow() == getCurrentSquare().getRow()+2 && questionSquare.getColumn() == getCurrentSquare().getColumn()-1 && isValid(r+2, c-1)) {
                     possible.add(questionSquare);
                 }
-                else if (questionSquare.getRow() == getCurrentSquare().getRow()+1 && questionSquare.getColumn() == getCurrentSquare().getColumn()-2) {
+                else if (questionSquare.getRow() == getCurrentSquare().getRow()+1 && questionSquare.getColumn() == getCurrentSquare().getColumn()-2 && isValid(r+1, c-2)) {
                     possible.add(questionSquare);
                 }
-                else if (questionSquare.getRow() == getCurrentSquare().getRow()+1 && questionSquare.getColumn() == getCurrentSquare().getColumn()-2) {
+                else if (questionSquare.getRow() == getCurrentSquare().getRow()-1 && questionSquare.getColumn() == getCurrentSquare().getColumn()-2 && isValid(r-1, c-2)) {
                     possible.add(questionSquare);
                 }
-                else if (questionSquare.getRow() == getCurrentSquare().getRow()-1 && questionSquare.getColumn() == getCurrentSquare().getColumn()-2) {
-                    possible.add(questionSquare);
-                }
-                else if (questionSquare.getRow() == getCurrentSquare().getRow()-2 && questionSquare.getColumn() == getCurrentSquare().getColumn()-1) {
+                else if (questionSquare.getRow() == getCurrentSquare().getRow()-2 && questionSquare.getColumn() == getCurrentSquare().getColumn()-1 && isValid(r-2, c-1)) {
                     possible.add(questionSquare);
                 }
             }
@@ -221,6 +218,8 @@ public class Knight {
      * @return true if the square at row r, column c is in this Knight's board; false otherwise
      */
     public boolean isValid(int r, int c) {
+
+
 
 
 
