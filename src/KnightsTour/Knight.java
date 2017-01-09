@@ -219,11 +219,7 @@ public class Knight {
      */
     public boolean isValid(int r, int c) {
 
-
-
-
-
-
+        return r >= 0 && r < board.length && c >= 0 && c < board[r].length;
 
     }
 }
