@@ -95,11 +95,15 @@ public class Knight {
      * @return true if starting Square is reachable from current Square, false otherwise
      */
     public boolean startIsReachableFromCurrent() {
+            //FOR CLOSED KNIGHTS TOUR
 
-        //do something to find a reachable
-        if(this.getCurrentSquare()) {
-            return true;
-        } else return false;
+
+
+//        //do something to find a reachable
+//        if(this.getCurrentSquare()...) {
+//            return true;
+//        } else return false;
+        return Boolean.parseBoolean(null);
     }
 
     /**
@@ -111,15 +115,20 @@ public class Knight {
      */
     public Square getBestSquare(ArrayList<Square> possible) {
         ArrayList<Square> bestList = new ArrayList<Square>();
-//        bestList.add(possible.get(0));
-        for (int r = 0; r < possible.size()-1; r++) {
 
-            if(possible.get(r).getScore() < bestList.get(r).getScore()) {
-                bestList.add(possible.get(r));
+        bestList.add(possible.get(0));
+
+        for(int i = 1;i < possible.size();i++){
+            if(possible.get(i).getScore() < bestList.get(i).getScore()){
+                bestList.set(i,possible.get(i));
             }
-            //TODO: Add coditional to if ==
-
+            else if(possible.get(i).getScore() == bestList.get(i).getScore()) {
+                bestList.add(possible.get(i));
+            }
         }
+
+        return bestList.get(random.nextInt(bestList.size()));
+
     }
 
     /**
