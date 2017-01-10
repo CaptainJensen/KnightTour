@@ -68,11 +68,11 @@ public class Knight {
         int pos = 1;
         sequence.add(currentSquare);
         do {
-            System.out.println("Possible places: " + currentSquare.getRow() + currentSquare.getColumn());
+            //System.out.println("Current Loc : " + currentSquare.getRow() + currentSquare.getColumn());
             board[currentSquare.getRow()][currentSquare.getColumn()] = true;
             //sequence.add(currentSquare);
             ArrayList<Square> possible = getPossibleSquares();
-            //System.out.println("Possible places: " + possible.toString());
+            System.out.println("Possible places: " + possible.toString());
             if (possible.isEmpty()) {
                 sequence.clear();
                 sequence.add(startingSquare);
@@ -85,11 +85,14 @@ public class Knight {
                 sequence.add(best);
                 currentSquare = best;
                 pos++;
+                System.out.println(pos);
             }
         } while (pos < board.length*board[0].length);
 
         return sequence;
     }
+
+
 
     /**
      * Determines if starting Square is reachable from current Square.
@@ -151,10 +154,8 @@ public class Knight {
     public ArrayList<Square> getPossibleSquares() {
 
         ArrayList<Square> possible = new ArrayList<Square>();
-
-        for (int r = 0; r < board.length; r++) {
-            for (int c = 0; c < board[r].length; c++) {
-
+        int r = currentSquare.getRow();
+        int c = currentSquare.getColumn();
 //                Square questionSquare = new Square(r, c, getScoreOfSquare(r, c));
 //                if(questionSquare.getRow() == getCurrentSquare().getRow()-2 && questionSquare.getColumn() == getCurrentSquare().getColumn()+1 && isValid(r-2, c+1) && !board[questionSquare.getRow()-2][questionSquare.getColumn()+1]) {
 //                    possible.add(questionSquare);
@@ -180,32 +181,33 @@ public class Knight {
 //                if (questionSquare.getRow() == getCurrentSquare().getRow()-2 && questionSquare.getColumn() == getCurrentSquare().getColumn()-1 && isValid(r-2, c-1) && !board[questionSquare.getRow()-2][questionSquare.getColumn()-1]) {
 //                    possible.add(questionSquare);
 //                }
-                if(isValid(r-2,c+1) && !board[r-2][c+1]) {
-                    possible.add(new Square(r-2,c+1,getScoreOfSquare(r-2,c+1)));
-                }
-                if(isValid(r-1,c+2) && !board[r-1][c+2]) {
-                    possible.add(new Square(r-1,c+2,getScoreOfSquare(r-1,c+2)));
-                }
-                if(isValid(r+1,c+2) && !board[r+1][c+2]) {
-                    possible.add(new Square(r+1,c+2,getScoreOfSquare(r+1,c+2)));
-                }
-                if(isValid(r+2,c+1) && !board[r+2][c+1]) {
-                    possible.add(new Square(r+2,c+1,getScoreOfSquare(r+2,c+1)));
-                }
-                if(isValid(r+2,c-1) && !board[r+2][c-1]) {
-                    possible.add(new Square(r+2,c-1,getScoreOfSquare(r+2,c-1)));
-                }
-                if(isValid(r+1,c-2) && !board[r+1][c-2]) {
-                    possible.add(new Square(r+1,c-2,getScoreOfSquare(r+1,c-2)));
-                }
-                if(isValid(r-1,c-2) && !board[r-1][c-2]) {
-                    possible.add(new Square(r-1,c-2,getScoreOfSquare(r-1,c-2)));
-                }
-                if(isValid(r-2,c-1) && !board[r-2][c-1]) {
-                    possible.add(new Square(r-2,c-1,getScoreOfSquare(r-2,c-1)));
-                }
-            }
+
+
+        if(isValid(r-2,c+1) && !board[r-2][c+1]) {
+            possible.add(new Square(r-2,c+1,getScoreOfSquare(r-2,c+1)));
         }
+        if(isValid(r-1,c+2) && !board[r-1][c+2]) {
+            possible.add(new Square(r-1,c+2,getScoreOfSquare(r-1,c+2)));
+        }
+        if(isValid(r+1,c+2) && !board[r+1][c+2]) {
+            possible.add(new Square(r+1,c+2,getScoreOfSquare(r+1,c+2)));
+        }
+        if(isValid(r+2,c+1) && !board[r+2][c+1]) {
+            possible.add(new Square(r+2,c+1,getScoreOfSquare(r+2,c+1)));
+        }
+        if(isValid(r+2,c-1) && !board[r+2][c-1]) {
+            possible.add(new Square(r+2,c-1,getScoreOfSquare(r+2,c-1)));
+        }
+        if(isValid(r+1,c-2) && !board[r+1][c-2]) {
+            possible.add(new Square(r+1,c-2,getScoreOfSquare(r+1,c-2)));
+        }
+        if(isValid(r-1,c-2) && !board[r-1][c-2]) {
+            possible.add(new Square(r-1,c-2,getScoreOfSquare(r-1,c-2)));
+        }
+        if(isValid(r-2,c-1) && !board[r-2][c-1]) {
+            possible.add(new Square(r-2,c-1,getScoreOfSquare(r-2,c-1)));
+        }
+
 
         return possible;
 
@@ -246,7 +248,7 @@ public class Knight {
      * @return true if the square at row r, column c is in this Knight's board; false otherwise
      */
     public boolean isValid(int r, int c) {
-        if(r >= 0 && r < board.length && c >= 0 && c < board[r].length && !board[r][c]) {
+        if(r >= 0 && r < board.length && c >= 0 && c < board[r].length) {
             return true;
         } else return false;
 
