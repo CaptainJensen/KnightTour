@@ -6,9 +6,6 @@ import processing.core.PFont;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-/**
- * Created by Jensen on 1/8/17.
- */
 public class ProcessingTour extends PApplet {
 
     private int boardSize = 8;

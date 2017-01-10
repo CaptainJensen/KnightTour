@@ -10,7 +10,6 @@ public class Knight {
     private Square currentSquare;
     private Square startingSquare;
     private boolean[][] board;
-    static Random random = new Random();
 
     /**
      * Creates a Knight with board of size rows x columns.
@@ -155,7 +154,7 @@ public class Knight {
     public ArrayList<Square> getPossibleSquares() {
 
 
-        ArrayList<Square> possible = new ArrayList();
+        ArrayList<Square> possible = new ArrayList<Square>();
         int r = currentSquare.getRow();
         int c = currentSquare.getColumn();
 
@@ -196,48 +195,33 @@ public class Knight {
      */
     public int getScoreOfSquare(int row, int col) {
 
-//        int ScoreOfSquare = 0;
-//        for (int r = 0; r < board.length; r++) {
-//            for (int c = 0; c < board[r].length; c++) {
-//                if(((r == row+2 || r == row-2) && (c == col-1 || c == col+1)) && !board[r][c]){
-//                    ScoreOfSquare++;
-//                }
-//                if(((r == row+1 || r == row-1) && (c == col-2 || c == col+2)) && !board[r][c]) {
-//                    ScoreOfSquare++;
-//                }
-//            }
-//        }
-        int count = 0;
+
+        int ScoreOfSquare = 0;
         if (isValid(row-2, col-1) && !board[row-2][col-1]) {
-            count++;
+            ScoreOfSquare++;
         }
         if (isValid(row-1, col-2) && !board[row-1][col-2]) {
-            count++;
+            ScoreOfSquare++;
         }
         if (isValid(row+1, col-2) && !board[row+1][col-2]) {
-            count++;
+            ScoreOfSquare++;
         }
         if (isValid(row+2, col-1) && !board[row+2][col-1]) {
-            count++;
+            ScoreOfSquare++;
         }
         if (isValid(row+2, col+1) && !board[row+2][col+1]) {
-            count++;
+            ScoreOfSquare++;
         }
         if (isValid(row+1, col+2) && !board[row+1][col+2]) {
-            count++;
+            ScoreOfSquare++;
         }
         if (isValid(row-1, col+2) && !board[row-1][col+2]) {
-            count++;
+            ScoreOfSquare++;
         }
         if (isValid(row-2, col+1) && !board[row-2][col+1]) {
-            count++;
+            ScoreOfSquare++;
         }
-        return count;
-
-        //return ScoreOfSquare;
-
-
-
+        return ScoreOfSquare;
 
     }
 
