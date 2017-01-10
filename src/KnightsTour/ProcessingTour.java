@@ -24,6 +24,11 @@ public class ProcessingTour extends PApplet {
     private ArrayList<Square> awnsers;
 
     public void setup() {
+
+        if(boardSize < 5) {
+            throw new IllegalArgumentException("Board Size Not aviable less than 5");
+        }
+
         size(boardSize*100,boardSize*100);
 
         startingSquare = new Square((int)random(0,boardSize-1),(int)random(0,boardSize-1),0);
@@ -49,17 +54,16 @@ public class ProcessingTour extends PApplet {
 
         for (int i = 0; i < iterationAwnser; i++) {
             if(lineMode) {
-                if(i<63) {
+                if(i<awnsers.size()-1) {
                     strokeWeight(2);
                     line(awnsers.get(i).getRow()*(height/boardSize)+ (height/boardSize)/2, awnsers.get(i).getColumn()*(width/boardSize) + (width/boardSize)/2, awnsers.get(i+1).getRow()*(height/boardSize) + (height/boardSize)/2, awnsers.get(i+1).getColumn()*(width/boardSize) + (width/boardSize)/2);
-
                 }
 
             } else {
                 if(i==0) {
                     fill(0,255,0);
                 }
-                else if(i==63) {
+                else if(i==awnsers.size()-1) {
                     fill(255,0,0);
                 }
                 else {

@@ -99,33 +99,11 @@ public class Knight {
      * @return true if starting Square is reachable from current Square, false otherwise
      */
     public boolean startIsReachableFromCurrent() {
-        if (startingSquare.getRow() == currentSquare.getRow()-2 && startingSquare.getColumn() == currentSquare.getColumn()-1) {
-            return true;
-        }
-        if (startingSquare.getRow() == currentSquare.getRow()-1 && startingSquare.getColumn() == currentSquare.getColumn()-2) {
-            return true;
-        }
-        if (startingSquare.getRow() == currentSquare.getRow()+1 && startingSquare.getColumn() == currentSquare.getColumn()-2) {
-            return true;
-        }
-        if (startingSquare.getRow() == currentSquare.getRow()+2 && startingSquare.getColumn() == currentSquare.getColumn()-1) {
-            return true;
-        }
-        if (startingSquare.getRow() == currentSquare.getRow()+2 && startingSquare.getColumn() == currentSquare.getColumn()+1) {
-            return true;
-        }
-        if (startingSquare.getRow() == currentSquare.getRow()+1 && startingSquare.getColumn() == currentSquare.getColumn()+2) {
-            return true;
-        }
-        if (startingSquare.getRow() == currentSquare.getRow()-1 && startingSquare.getColumn() == currentSquare.getColumn()+2) {
-            return true;
-        }
-        if (startingSquare.getRow() == currentSquare.getRow()-2 && startingSquare.getColumn() == currentSquare.getColumn()+1) {
-            return true;
-        }
-        else {
-            return false;
-        }
+
+        //FOR Closed Knights Tour
+
+        return false;
+
     }
 
     /**
